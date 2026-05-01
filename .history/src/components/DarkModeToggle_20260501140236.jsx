@@ -12,9 +12,7 @@
 
 
 
-import React from "react";
-
-const DarkModeToggle = ({ darkMode, setDarkMode }) => {
+export default function DarkModeToggle({ darkMode, setDarkMode }) {
   return (
     <button
       onClick={() => setDarkMode((prev) => !prev)}
@@ -23,6 +21,4 @@ const DarkModeToggle = ({ darkMode, setDarkMode }) => {
       {darkMode ? "Toggle Light Mode" : "Toggle Dark Mode"}
     </button>
   );
-};
-
-export default DarkModeToggle;
+}

@@ -3,23 +3,28 @@ import DarkModeToggle from "./components/DarkModeToggle";
 import ProductList from "./components/ProductList";
 import Cart from "./components/Cart";
 
-import { sampleProducts } from "./components/ProductList";
+const PRODUCTS = [
+  { id: 1, name: "Milk", category: "Dairy" },
+  { id: 2, name: "Bread", category: "Bakery" },
+  { id: 3, name: "Cheese", category: "Dairy" },
+  { id: 4, name: "Apple", category: "Fruit" }
+];
 
 export default function App() {
   const [darkMode, setDarkMode] = useState(false);
   const [cart, setCart] = useState([]);
   const [category, setCategory] = useState("All");
 
-  // ADD TO CART
+  // Add to cart handler
   const addToCart = (product) => {
     setCart((prev) => [...prev, product]);
   };
 
-  // FILTER PRODUCTS
+  // Filter products
   const filteredProducts =
     category === "All"
-      ? sampleProducts
-      : sampleProducts.filter((p) => p.category === category);
+      ? PRODUCTS
+      : PRODUCTS.filter((p) => p.category === category);
 
   return (
     <div className={darkMode ? "dark" : "light"}>
@@ -27,15 +32,16 @@ export default function App() {
 
       <Cart cart={cart} />
 
-      {/* CATEGORY FILTER */}
+      {/* Category Filter */}
       <select
         value={category}
         onChange={(e) => setCategory(e.target.value)}
         data-testid="category-filter"
       >
         <option value="All">All</option>
-        <option value="Fruits">Fruits</option>
         <option value="Dairy">Dairy</option>
+        <option value="Bakery">Bakery</option>
+        <option value="Fruit">Fruit</option>
       </select>
 
       <ProductList products={filteredProducts} addToCart={addToCart} />
